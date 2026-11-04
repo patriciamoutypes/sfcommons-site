@@ -99,7 +99,7 @@
   if (!wrap) return;
   wrap.querySelectorAll('.pill-column').forEach(function (col) {
     var pills = col.querySelectorAll('.pill'), n = pills.length;
-    pills.forEach(function (p, i) { p.style.setProperty('--d', ((n - 1 - i) * 0.11) + 's'); });
+    pills.forEach(function (p, i) { p.style.setProperty('--d', ((n - 1 - i) * 0.18) + 's'); });
   });
   function go() { wrap.classList.add('is-live'); }
   if ('IntersectionObserver' in window) {

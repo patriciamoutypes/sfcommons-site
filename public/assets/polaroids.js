@@ -11,10 +11,16 @@
   var angles = { 'image-expand': 2, 'image-discover': 1, 'image-heal': -2, 'image-actualize': -1 };
   var order = ['image-expand', 'image-discover', 'image-heal', 'image-actualize'];
 
-  function visibleTimer(el, fn, ms) {
-    var timer = null;
-    function start() { if (!timer) timer = setInterval(fn, ms); }
-    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+  function visibleTimer(el, fn, ms, offset) {
+    var timer = null, lead = null;
+    function start() {
+      if (timer || lead) return;
+      lead = setTimeout(function () { lead = null; fn(); timer = setInterval(fn, ms); }, offset || 0);
+    }
+    function stop() {
+      if (lead) { clearTimeout(lead); lead = null; }
+      if (timer) { clearInterval(timer); timer = null; }
+    }
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
         entries[0].isIntersecting ? start() : stop();
@@ -27,7 +33,8 @@
 
   // ---- Pillar stacks ----
   var stacks = [];
-  document.querySelectorAll('.polaroid-container-2').forEach(function (container) {
+  document.querySelectorAll('.polaroid-container-2').forEach(function (container, idx) {
+    container.setAttribute('data-stack', idx + 1);
     var imgs = Array.prototype.slice.call(container.querySelectorAll('.pillar-polaroid'));
     if (imgs.length < 2) return;
     var z = 1, current = null, step = 0;
@@ -54,7 +61,8 @@
     }
     // The container collapses (its photos are absolutely positioned), so
     // watch the first photo to know when the stack is on screen.
-    var timer = visibleTimer(imgs[0], next, INTERVAL);
+    // Each stack runs on its own rhythm so the two never move in unison.
+    var timer = visibleTimer(imgs[0], next, INTERVAL + idx * 1100, idx * 1300);
     stacks.push({ show: show, timer: timer });
   });
 

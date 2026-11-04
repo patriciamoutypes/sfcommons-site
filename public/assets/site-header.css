@@ -1273,3 +1273,25 @@
   .home-page .polaroid-container.polaaroid-container-left { margin-left: 0; }
   .home-page .polaroid-container.polaroid-container-right { margin-right: 0; }
 }
+
+/* Membership polaroid stack: larger than the pillars stack below it. */
+@media (min-width: 992px) {
+  .home-page .polaroid-container-2[data-stack="1"] .pillar-polaroid {
+    width: 400px;
+    max-width: 100%;
+  }
+}
+
+/* Event pills: slower, softer drop with a longer stagger. */
+.home-page .pill-columns .pill {
+  transform: translateY(-40vh);
+}
+.home-page .pill-columns.is-live .pill {
+  animation: pill-drop-soft 1.6s cubic-bezier(.22, .9, .32, 1) forwards;
+  animation-delay: var(--d, 0s);
+}
+@keyframes pill-drop-soft {
+  0%   { opacity: 0; transform: translateY(-40vh); }
+  30%  { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0); }
+}
