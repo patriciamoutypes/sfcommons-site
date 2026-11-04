@@ -29,6 +29,21 @@ embeds load from their own services. None of that is Webflow.
   the live site, so only the `.webm` is referenced. Browsers that need mp4
   (older Safari) show the poster image instead.
 
+## Site header and polaroids (added 2026-11-04)
+
+- The header on every page (logo, hamburger menu, pink "Join as a member"
+  button) is the `<header class="sh">` block near the top of each page's
+  HTML, styled by `public/assets/site-header.css` and driven by
+  `public/assets/site-header.js`. To change a menu link, edit that block in
+  each of the 8 pages (home, about, events, rentals, host-at-the-commons,
+  membership, membership-copy-2, thespace). The "you're invited" pages have
+  no header on purpose.
+- The polaroid stacks on the home page cycle through their photos via
+  `public/assets/polaroids.js`. Hovering a pillar title (Expand, Discover,
+  Heal, Actualize) brings that pillar's photo to the front. To change the
+  photos, swap the image files referenced by the `<img class="polaroid ...">`
+  tags in `public/index.html`.
+
 ## Known quirks carried over from the live site
 
 Three JavaScript errors (`rotationTime` already declared, `onmouseover` on
