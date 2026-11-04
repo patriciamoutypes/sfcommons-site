@@ -211,3 +211,47 @@
     margin-top: 12px;
   }
 }
+
+/* Home page: the event pills under the pillars. Formerly a Matter.js
+   physics drop; now static columns of pills. */
+.gravity-space {
+  height: auto;
+  min-height: 0;
+  pointer-events: auto;
+}
+.pill-columns {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  gap: 8px 48px;
+  width: 100%;
+  padding: 0 5vw;
+}
+.pill-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 22px;
+  border-radius: 25px;
+  color: #fff;
+  font-family: Ogg, serif;
+  font-size: 24px;
+  line-height: 1;
+  white-space: nowrap;
+}
+@media (max-width: 1400px) {
+  .pill-columns { grid-template-columns: repeat(2, auto); }
+  .pill-column:nth-child(3) { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, auto); justify-content: center; gap: 8px 48px; }
+}
+@media (max-width: 770px) {
+  .pill-columns { grid-template-columns: auto; gap: 8px; }
+  .pill-column:nth-child(3) { grid-template-columns: auto; gap: 8px; }
+  .pill { height: 42px; font-size: 20px; padding: 0 18px; }
+}
