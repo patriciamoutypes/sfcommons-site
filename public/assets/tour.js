@@ -67,3 +67,44 @@
   setActive(rooms[0].dataset.room);
   onScroll();
 })();
+
+// "The Member Experience" day line: a marker shows the current time in San
+// Francisco and what the house is doing right now.
+(function () {
+  var line = document.querySelector('.day-line');
+  if (!line) return;
+  var now = line.querySelector('.day-now');
+  function update() {
+    var parts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(new Date());
+    var h = +parts.find(function (p) { return p.type === 'hour'; }).value % 24;
+    var m = +parts.find(function (p) { return p.type === 'minute'; }).value;
+    var mins = h * 60 + m, open = 9 * 60, gong = 17 * 60 + 15, close = 22 * 60;
+    var label, pct;
+    if (mins < open) { label = 'Doors open at 9am'; pct = 0; }
+    else if (mins < gong) { label = 'Right now: co-working'; pct = (mins - open) / (close - open) * 100; }
+    else if (mins < close) { label = 'Right now: meeting house'; pct = (mins - open) / (close - open) * 100; }
+    else { label = 'Closed for the night, back at 9am'; pct = 100; }
+    now.style.left = pct + '%';
+    now.querySelector('b').textContent = label;
+    now.hidden = false;
+  }
+  update();
+  setInterval(update, 60000);
+})();
+
+// Event pills: stagger the drop so each column stacks from the bottom up.
+(function () {
+  var wrap = document.querySelector('.pill-columns');
+  if (!wrap) return;
+  wrap.querySelectorAll('.pill-column').forEach(function (col) {
+    var pills = col.querySelectorAll('.pill'), n = pills.length;
+    pills.forEach(function (p, i) { p.style.setProperty('--d', ((n - 1 - i) * 0.11) + 's'); });
+  });
+  function go() { wrap.classList.add('is-live'); }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) { go(); io.disconnect(); }
+    }, { threshold: 0.15 });
+    io.observe(wrap);
+  } else { go(); }
+})();
