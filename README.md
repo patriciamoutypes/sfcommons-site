@@ -38,6 +38,9 @@ embeds load from their own services. None of that is Webflow.
   each of the 8 pages (home, about, events, rentals, host-at-the-commons,
   membership, membership-copy-2, thespace). The "you're invited" pages have
   no header on purpose.
+- The Events page header is a scrolling photo marquee: markup in
+  `public/events/index.html` (the same four photos repeated three times for a
+  seamless loop), styles in `public/assets/marquee.css`.
 - The polaroid stacks on the home page cycle through their photos via
   `public/assets/polaroids.js`. Hovering a pillar title (Expand, Discover,
   Heal, Actualize) brings that pillar's photo to the front. To change the

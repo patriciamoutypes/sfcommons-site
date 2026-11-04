@@ -1,0 +1,68 @@
+/* Scrolling photo marquee used at the top of the Events page.
+   The track holds the same set of photos three times so the loop is
+   seamless; the animation moves it one third of its width. To change the
+   photos, edit the <img> tags in events/index.html (keep all three copies
+   of the set identical). */
+
+.ev-marquee {
+  --ev-gap: 24px;
+  --ev-height: clamp(260px, 48vh, 620px);
+  position: relative;
+  width: 100%;
+  margin-top: 57px;
+  padding: 2em 0 1em;
+  overflow: hidden;
+}
+.ev-marquee::before,
+.ev-marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 6vw;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to right, rgba(233, 233, 233, .9), rgba(233, 233, 233, 0));
+}
+.ev-marquee::before { left: 0; }
+.ev-marquee::after { right: 0; transform: scaleX(-1); }
+
+.ev-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: var(--ev-gap);
+  width: max-content;
+  animation: ev-marquee-scroll 60s linear infinite;
+  will-change: transform;
+}
+.ev-marquee:hover .ev-marquee-track {
+  animation-play-state: paused;
+}
+
+.ev-marquee-img {
+  flex: none;
+  height: var(--ev-height);
+  width: auto;
+  max-width: none;
+  object-fit: cover;
+  border-radius: 20px;
+  opacity: .9;
+}
+.ev-marquee-img:nth-child(odd) {
+  margin-top: 24px;
+}
+
+@keyframes ev-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-100% / 3)); }
+}
+
+@media (max-width: 767px) {
+  .ev-marquee { --ev-height: 240px; --ev-gap: 14px; padding-top: 1em; }
+  .ev-marquee-img:nth-child(odd) { margin-top: 12px; }
+  .ev-marquee-track { animation-duration: 40s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ev-marquee-track { animation: none; }
+}
