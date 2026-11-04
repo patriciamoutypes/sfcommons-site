@@ -255,3 +255,19 @@
   .pill-column:nth-child(3) { grid-template-columns: auto; gap: 8px; }
   .pill { height: 42px; font-size: 20px; padding: 0 18px; }
 }
+
+/* Home page: when the headline and the arched video overlap, the headline
+   stays on top. */
+.container-footer.container-heading {
+  position: relative;
+  z-index: 3;
+  pointer-events: none;   /* so the title never blocks the video below it */
+}
+.container-footer.container-heading a,
+.container-footer.container-heading button {
+  pointer-events: auto;
+}
+.video-container {
+  position: relative;
+  z-index: 1;
+}
