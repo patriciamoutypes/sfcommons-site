@@ -1306,3 +1306,21 @@
    pushing the rows apart). */
 .home-page .day-chips { gap: 6px 6px; margin: 0; }
 .home-page .day-chips li { margin: 0; padding: 5px 11px; line-height: 1.2; }
+
+/* Header wordmark: "The Commons" in the site's serif, beside the logo. */
+.sh-brand { gap: 12px; line-height: 1; }
+.sh-wordmark {
+  font-family: Ogg, serif;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: .01em;
+  color: var(--dark-slate-grey, #3b3b3b);
+  white-space: nowrap;
+  transform: translateY(1px);
+}
+.sh-brand:hover .sh-wordmark { opacity: .7; }
+@media (max-width: 767px) {
+  .sh-brand { gap: 9px; }
+  .sh-brand .lottie-small-top-title { width: 2.6rem; max-height: 2.6rem; }
+  .sh-wordmark { font-size: 18px; }
+}
