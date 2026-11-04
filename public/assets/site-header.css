@@ -197,3 +197,17 @@
 @media (prefers-reduced-motion: reduce) {
   .vals-track { animation: none; }
 }
+
+/* Home page: the arched video under the headline. Slightly larger and
+   higher on desktop so it sits with the headline and the photo on the right.
+   Sizes scale with the viewport and stop growing on very wide screens. */
+@media (min-width: 992px) {
+  .video-container {
+    margin-top: -540px;
+  }
+  .about-video {
+    width: clamp(460px, 31vw, 560px);
+    height: clamp(600px, 40vw, 720px);
+    margin-top: 12px;
+  }
+}
