@@ -3,8 +3,7 @@
 //    take turns sliding out and landing on top. Hovering a pillar title
 //    (#trigger-expand, #trigger-discover, #trigger-heal, #trigger-actualize)
 //    brings that pillar's photo to the front.
-// 2. ".polaroid-container" pairs (heal / actualize section): the two photos
-//    swap places on a timer.
+// The polaroids around the motto quote are intentionally static.
 // Animations only run while the stack is on screen.
 (function () {
   var INTERVAL = 2500;
@@ -49,7 +48,8 @@
       }, SLIDE_MS);
     }
     function next() {
-      show(order[step % order.length]);
+      // Cycle through every photo in the stack, in document order.
+      show(imgs[step % imgs.length].id);
       step++;
     }
     // The container collapses (its photos are absolutely positioned), so
@@ -66,29 +66,5 @@
     });
   });
 
-  // ---- Heal / actualize pairs ----
-  document.querySelectorAll('.polaroid-container').forEach(function (container) {
-    var top = container.querySelector('.polaroid:not(.polaroid-bottom)');
-    var bottom = container.querySelector('.polaroid.polaroid-bottom');
-    if (!top || !bottom) return;
-    var baseTransform = getComputedStyle(top).transform;
-    if (baseTransform === 'none') baseTransform = '';
-    top.style.transition = 'transform .3s ease';
-    var dir = container.classList.contains('polaroid-container-right') ? '-110%' : '110%';
-
-    function swap() {
-      top.style.transform = 'translateX(' + dir + ') ' + baseTransform;
-      setTimeout(function () {
-        var a = top.getAttribute('src'), b = bottom.getAttribute('src');
-        var as = top.getAttribute('srcset'), bs = bottom.getAttribute('srcset');
-        top.setAttribute('src', b); bottom.setAttribute('src', a);
-        if (as || bs) {
-          bs ? top.setAttribute('srcset', bs) : top.removeAttribute('srcset');
-          as ? bottom.setAttribute('srcset', as) : bottom.removeAttribute('srcset');
-        }
-        setTimeout(function () { top.style.transform = baseTransform; }, 20);
-      }, SLIDE_MS);
-    }
-    visibleTimer(container, swap, INTERVAL + 700);
-  });
+  // The four polaroids around the motto quote (.polaroid-container) stay still.
 })();
