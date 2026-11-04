@@ -167,3 +167,33 @@
 .quote {
   background-color: transparent;
 }
+
+/* About page: "Our Values" conveyor. The nine cards are repeated twice in
+   about/index.html so the loop is seamless; the track moves half its width. */
+.vals-marquee {
+  width: 100%;
+  margin: 8vh 0 4vh;
+  padding-top: 50px;      /* room for the raised photo cards */
+  padding-bottom: 12px;
+  overflow: hidden;
+}
+.vals-track {
+  display: flex;
+  align-items: flex-start;
+  width: max-content;
+  animation: vals-scroll 36s linear infinite;
+  will-change: transform;
+}
+.vals-marquee:hover .vals-track {
+  animation-play-state: paused;
+}
+.vals-track .testimonial-card {
+  flex: none;
+}
+@keyframes vals-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vals-track { animation: none; }
+}
