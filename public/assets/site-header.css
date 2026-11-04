@@ -1308,19 +1308,20 @@
 .home-page .day-chips li { margin: 0; padding: 5px 11px; line-height: 1.2; }
 
 /* Header wordmark: "The Commons" in the site's serif, beside the logo. */
-.sh-brand { gap: 12px; line-height: 1; }
+.sh-brand { gap: 14px; line-height: 1; }
 .sh-wordmark {
   font-family: Ogg, serif;
-  font-weight: 500;
-  font-size: 22px;
-  letter-spacing: .01em;
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: .005em;
   color: var(--dark-slate-grey, #3b3b3b);
   white-space: nowrap;
-  transform: translateY(1px);
+  transform: translateY(2px);
+  transition: opacity .2s;
 }
 .sh-brand:hover .sh-wordmark { opacity: .7; }
 @media (max-width: 767px) {
-  .sh-brand { gap: 9px; }
+  .sh-brand { gap: 10px; }
   .sh-brand .lottie-small-top-title { width: 2.6rem; max-height: 2.6rem; }
-  .sh-wordmark { font-size: 18px; }
+  .sh-wordmark { font-size: 19px; }
 }
