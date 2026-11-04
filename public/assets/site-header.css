@@ -971,3 +971,131 @@
   .home-page .day-cards { grid-template-columns: 1fr; }
   .home-page .day-ticks li:not(:first-child):not(:last-child):not(.is-shift) { display: none; }
 }
+
+/* Member Experience: two sample nights + the evening floor plan. */
+.home-page .day-nights {
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(59, 59, 59, .18);
+}
+.home-page .night-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+.home-page .night-photo {
+  margin: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: 280px;
+}
+.home-page .night-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.home-page .night {
+  padding: 26px 26px 22px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .55);
+  border: 1px solid rgba(59, 59, 59, .12);
+}
+.home-page .night h4 {
+  margin: 0 0 18px;
+  font-family: Ogg, serif;
+  font-size: clamp(24px, 2vw, 32px);
+  font-weight: 500;
+  line-height: 1.1;
+  text-transform: none;
+}
+.home-page .night-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.home-page .night-rows li {
+  display: grid;
+  grid-template-columns: 56px 92px 1fr 1fr;
+  gap: 10px;
+  align-items: center;
+}
+.home-page .night-time {
+  font: 500 12px/1 Suisseintl, sans-serif;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #3b3b3b;
+}
+.home-page .night-tag {
+  display: inline-block;
+  justify-self: start;
+  padding: 5px 9px;
+  border-radius: 4px;
+  background: var(--t);
+  color: var(--tc);
+  font: 500 11px/1 Suisseintl, sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.home-page .night-rows li > .night-tag:last-child {
+  grid-column: 2 / -1;
+}
+.home-page .night-ev {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.home-page .night-ev b {
+  font: 500 clamp(13px, 1vw, 15px)/1.25 Suisseintl, sans-serif;
+  color: #263942;
+}
+.home-page .night-ev small {
+  font: 300 12px/1.3 Suisseintl, sans-serif;
+  color: rgba(59, 59, 59, .75);
+}
+
+.home-page .night-map {
+  margin: 18px 0 0;
+}
+.home-page .night-map-scroll {
+  border-radius: 20px;
+  overflow: hidden;
+  background: #e9e9e9;
+}
+.home-page .night-map img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.home-page .night-map figcaption {
+  margin-top: 12px;
+  font: 300 clamp(13px, 1vw, 15px)/1.5 Suisseintl, sans-serif;
+  color: rgba(59, 59, 59, .8);
+  max-width: 70ch;
+}
+
+/* Anytime band now has two tiles. */
+.home-page .day-tiles {
+  grid-template-columns: repeat(2, 1fr);
+}
+.home-page .day-tile:nth-child(2) { background: #ebe3d7; }
+
+@media (max-width: 991px) {
+  .home-page .night-grid { grid-template-columns: 1fr; }
+  .home-page .night-photo { min-height: 0; aspect-ratio: 16 / 10; }
+  .home-page .night-photo:last-child { order: 5; }
+  .home-page .day-tiles { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+  .home-page .night { padding: 20px 16px; }
+  .home-page .night-rows li { grid-template-columns: 52px 1fr; }
+  .home-page .night-rows li > .night-tag { grid-column: 2; }
+  .home-page .night-rows li > .night-ev { grid-column: 2; }
+  .home-page .night-map-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .home-page .night-map img { width: 900px; max-width: none; }
+}
