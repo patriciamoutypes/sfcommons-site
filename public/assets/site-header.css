@@ -1101,8 +1101,9 @@
 }
 
 /* ==================== Hero ==================== */
-/* Text left (eyebrow, headline, lede, buttons), arch in the middle,
-   illustration tall on the right. Fits a laptop screen. */
+/* Text left; the arch video large and centered on the right. Spacing is
+   on the page's 120px rhythm: 112px under the header, 72px to the photo
+   strip (which adds its own 48px). */
 .home-page .hero-eyebrow {
   margin: 0 0 18px;
   font: 500 clamp(11px, .85vw, 13px)/1 Suisseintl, sans-serif;
@@ -1112,26 +1113,26 @@
 }
 .home-page .hero-title {
   font-family: Ogg, serif;
-  font-size: clamp(38px, 3.7vw, 60px);
+  font-size: clamp(40px, 4.2vw, 68px);
   font-weight: 500;
   line-height: 1.05;
   letter-spacing: 0;
   text-transform: none;
-  margin: 0 0 20px;
+  margin: 0 0 22px;
   white-space: normal;
 }
 .home-page .hero-title .span-italict { font-style: italic; font-weight: 400; }
 .home-page .hero-lede {
   margin: 0;
-  max-width: 46ch;
-  font: 300 clamp(16px, 1.2vw, 19px)/1.55 Suisseintl, sans-serif;
+  max-width: 48ch;
+  font: 300 clamp(16px, 1.25vw, 20px)/1.55 Suisseintl, sans-serif;
   color: #3b3b3b;
 }
 .home-page .hero-cta {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 26px;
+  margin-top: 28px;
 }
 .home-page .hero-btn {
   display: inline-flex;
@@ -1151,15 +1152,21 @@
 .home-page .hero-btn--ghost { background: transparent; }
 .home-page .hero-btn--ghost:hover { background: #263942; color: #e9e9e9; }
 
+.home-page .image-loop-container {
+  margin-top: 48px;
+  padding-top: 0;
+  padding-bottom: 24px;
+}
+
 @media (min-width: 992px) {
   .home-page .page-section.l-padding-row { padding-top: 0; }
   .home-page .relative.overflow-hidden {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, .6fr) minmax(0, .9fr);
-    grid-template-areas: "head arch art";
-    column-gap: 3.5vw;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "head arch";
+    column-gap: 6vw;
     align-items: center;
-    padding: 110px 8vw 56px;
+    padding: 112px 8vw 72px;
     overflow: visible;
   }
   .home-page .container-footer.xl-padding-row.container-heading {
@@ -1179,74 +1186,19 @@
     justify-content: center;
   }
   .home-page .about-video {
-    width: 100%;
-    max-width: 360px;
-    height: clamp(380px, 29vw, 470px);
+    width: clamp(400px, 34vw, 560px);
+    height: clamp(500px, 44vw, 700px);
     margin: 0;
-  }
-
-  .home-page .image-bg-headline-1 {
-    grid-area: art;
-    position: relative;
-    margin: 0;
-    min-height: 0;
-    height: clamp(460px, 62vh, 620px);
-    border-radius: 20px;
-    overflow: hidden;
-  }
-  .home-page .image-preview.image-preview-2 {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 0;
-    max-height: none;
-    object-fit: cover;
-    object-position: 50% 30%;
-    border-radius: 20px;
-    opacity: 1;
   }
 }
 @media (max-width: 991px) {
-  .home-page .relative.overflow-hidden { display: flex; flex-direction: column; }
+  .home-page .relative.overflow-hidden { display: flex; flex-direction: column; padding-bottom: 8px; }
   .home-page .container-heading { order: 1; }
-  .home-page .image-bg-headline-1 { order: 2; }
-  .home-page .video-container { order: 3; }
+  .home-page .video-container { order: 2; margin: 32px 0 0; align-items: center; }
+  .home-page .about-video { width: 100%; max-width: 420px; height: clamp(440px, 110vw, 560px); margin: 0; }
   .home-page .hero-cta { margin-top: 20px; }
+  .home-page .image-loop-container { margin-top: 40px; }
 }
-
-/* The illustration wrapper is absolutely positioned by a 3-class Webflow
-   rule; this outranks it so the grid can place it. */
-.home-page .image-bg-headline-1._2.image-2-bg-headline {
-  position: relative;
-  inset: auto;
-  top: auto; right: auto; bottom: auto; left: auto;
-  width: auto;
-  margin: 0;
-  z-index: 0;
-  opacity: 1;
-  background-color: transparent;
-  display: block;
-  overflow: hidden;
-  border-radius: 20px;
-}
-@media (min-width: 992px) {
-  .home-page .image-bg-headline-1._2.image-2-bg-headline { height: clamp(460px, 62vh, 620px); min-height: 0; }
-}
-@media (max-width: 991px) {
-  .home-page .image-bg-headline-1._2.image-2-bg-headline {
-    width: 100%;
-    height: clamp(260px, 48vh, 440px);
-    margin: 8px 0 24px;
-  }
-  .home-page .image-bg-headline-1._2.image-2-bg-headline .image-preview-2 {
-    position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; object-fit: cover; opacity: 1; border-radius: 20px;
-  }
-  .home-page .video-container { margin: 0 0 24px; }
-  .home-page .container-footer.xl-padding-row.container-heading { padding: 16px 0 0; margin-top: 0; }
-  .home-page .page-section.l-padding-row { padding-top: 24px; }
-}
-
 /* Phone: clear the fixed header above the hero eyebrow. */
 @media (max-width: 991px) {
   .home-page .page-section.l-padding-row { padding-top: 84px; }
@@ -1294,4 +1246,33 @@
   0%   { opacity: 0; transform: translateY(-40vh); }
   30%  { opacity: 1; }
   100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Event pills: the module gets its own headroom and clips the drop, so pills
+   fall in from the module's top edge instead of across the pillars above. */
+.home-page .gravity-space {
+  padding-top: 104px;
+  padding-bottom: 24px;
+  overflow: hidden;
+}
+.home-page .pill-columns .pill { transform: translateY(-260px); }
+@keyframes pill-drop-soft {
+  0%   { opacity: 0; transform: translateY(-260px); }
+  25%  { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 991px) {
+  .home-page .gravity-space { padding-top: 64px; }
+}
+
+/* Polaroids: sized as accents next to the text columns (442px at 1440),
+   not as the dominant element. Membership stack reads a touch larger than
+   the pillars stack; motto polaroids sit at the quote's scale. */
+@media (min-width: 992px) {
+  .home-page .polaroid-container-2[data-stack="1"] .pillar-polaroid { width: 330px; }
+  .home-page .polaroid-container-2[data-stack="2"] .pillar-polaroid { width: 290px; max-width: 100%; }
+  .home-page .polaroid-container.polaaroid-container-left,
+  .home-page .polaroid-container.polaroid-container-right { flex-basis: 28%; max-width: 28%; width: 28vw; }
+  .home-page .polaroid-container .polaroid { width: 300px; }
+  .home-page .flex-center.middle-container { flex-basis: 40%; }
 }
