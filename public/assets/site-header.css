@@ -1301,3 +1301,8 @@
 .home-page .day-chips li:nth-child(4n+2) { background: #e9dde6; }
 .home-page .day-chips li:nth-child(4n+3) { background: #f1e7d6; }
 .home-page .day-chips li:nth-child(4n+4) { background: #dde9e4; }
+
+/* Co-working chips: sit snug in rows (Webflow's list-item margins were
+   pushing the rows apart). */
+.home-page .day-chips { gap: 6px 6px; margin: 0; }
+.home-page .day-chips li { margin: 0; padding: 5px 11px; line-height: 1.2; }
