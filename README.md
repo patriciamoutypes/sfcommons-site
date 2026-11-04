@@ -13,7 +13,7 @@ embeds load from their own services. None of that is Webflow.
   membership-copy-2, thespace, youre-invited (4 variants), plus `404.html`.
   `assets/` holds 375 files, about 170 MB.
 - `webflow-export/` — the raw zip Webflow produced, for reference only.
-- `netlify.toml` — publishes `public/` and sets long cache headers on assets.
+- `public/_headers` — Cloudflare Pages cache rules for the assets.
 
 ## Changes made during the move
 
@@ -55,7 +55,7 @@ the live Webflow site too. They don't break anything visible.
 
 ## How to edit the site (for team members)
 
-This repo is connected to Netlify. Every commit to `main` goes live on
+This repo is connected to Cloudflare Pages. Every commit to `main` goes live on
 thesfcommons.com within about a minute. There is no Webflow editor anymore.
 
 **Change some text**
@@ -95,21 +95,15 @@ From the `Vibe Coding` folder the `sfcommons-site` entry in
 npx --yes serve@14 public -l 8792
 ```
 
-## Go live
+## Hosting (Cloudflare Pages, since 2026-11-04)
 
-1. https://app.netlify.com/drop — drag the `public` folder in. Note the
-   `something.netlify.app` address.
-2. Netlify → Project configuration → General → turn off the
-   "Powered by Netlify" badge.
-3. Netlify → Domain management → Add a domain → `www.thesfcommons.com`.
-4. DNS is at Squarespace Domains. In Squarespace → Domains →
-   thesfcommons.com → DNS, replace the Webflow records. Note the bare domain
-   currently has TWO A records; delete both.
-   - delete `A @ 198.202.211.1`
-   - delete `A @ 34.117.223.165`
-   - delete `CNAME www cdn.webflow.com`
-   - add `A @ 75.2.60.5`
-   - add `CNAME www something.netlify.app` (no https://, no trailing slash)
-   Leave MX/TXT records alone (email).
-5. Wait for Netlify to issue HTTPS (retry "Verify DNS configuration" on the
-   HTTPS panel if it lags). Then cancel the Webflow plan for this site.
+This repo is connected to Cloudflare Pages (project `sfcommons-site`, account
+impatriciamou@gmail.com). Every push to `main` builds and goes live on
+thesfcommons.com in about a minute. Preview copy: https://sfcommons-site.pages.dev.
+Settings: framework None, no build command, output directory `public`.
+DNS for thesfcommons.com is on Cloudflare too, so custom domains and HTTPS are
+handled in Workers & Pages → sfcommons-site → Custom domains.
+
+Deploys are free on Cloudflare (no credit meter), which is why the site
+moved off Netlify. Pushes still deserve batching out of habit: one push
+per round of changes.
