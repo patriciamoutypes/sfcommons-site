@@ -159,3 +159,11 @@
   .sh-join .sh-join-long { display: none; }
   .sh-menu { left: 5vw; right: 5vw; min-width: 0; }
 }
+
+/* ---- Site tweaks (overrides of the generated Webflow stylesheet) ---- */
+
+/* Home page: the Howard Thurman quote sat in a white box. Let it sit on
+   the page background like the text around it. */
+.quote {
+  background-color: transparent;
+}
