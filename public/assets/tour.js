@@ -78,12 +78,11 @@
     var parts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(new Date());
     var h = +parts.find(function (p) { return p.type === 'hour'; }).value % 24;
     var m = +parts.find(function (p) { return p.type === 'minute'; }).value;
-    var mins = h * 60 + m, open = 9 * 60, gong = 17 * 60 + 15, close = 22 * 60;
+    var mins = h * 60 + m, open = 9 * 60, shift = 17 * 60 + 30, close = 22 * 60;
     var label, pct;
-    if (mins < open) { label = 'Doors open at 9am'; pct = 0; }
-    else if (mins < gong) { label = 'Right now: co-working'; pct = (mins - open) / (close - open) * 100; }
-    else if (mins < close) { label = 'Right now: meeting house'; pct = (mins - open) / (close - open) * 100; }
-    else { label = 'Closed for the night, back at 9am'; pct = 100; }
+    if (mins < open || mins >= close) { now.hidden = true; return; }
+    label = mins < shift ? 'Co-working now' : 'Meeting house now';
+    pct = (mins - open) / (close - open) * 100;
     now.style.left = pct + '%';
     now.classList.toggle('at-start', pct < 18);
     now.classList.toggle('at-end', pct > 82);

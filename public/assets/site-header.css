@@ -941,3 +941,33 @@
 /* Keep the now-label inside the line near either end. */
 .home-page .day-now.at-start b { left: 0; transform: none; }
 .home-page .day-now.at-end b { left: auto; right: 0; transform: none; }
+
+/* Member Experience: photos on the cards, four equal columns, no gong card. */
+.home-page .day-cards {
+  grid-template-columns: repeat(4, 1fr);
+}
+.home-page .day-card {
+  padding-top: 18px;
+}
+.home-page .day-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 18px;
+}
+.home-page .day-ticks li.is-shift {
+  font-family: Ogg, serif;
+  font-size: 15px;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #263942;
+}
+@media (max-width: 991px) {
+  .home-page .day-cards { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 767px) {
+  .home-page .day-cards { grid-template-columns: 1fr; }
+  .home-page .day-ticks li:not(:first-child):not(:last-child):not(.is-shift) { display: none; }
+}
