@@ -1276,3 +1276,17 @@
   .home-page .polaroid-container .polaroid { width: 300px; }
   .home-page .flex-center.middle-container { flex-basis: 40%; }
 }
+
+/* Hero button: same type as the header's "Join as a member" pill
+   (uppercase Suisse with the last word in Ogg, arrow icon). */
+.home-page .hero-btn {
+  gap: .4em;
+  padding: .65em 1.4em;
+  font: 400 clamp(13px, 1.1vw, 17px)/1.2 Suisseintl, sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.home-page .hero-btn .span-ogg { font-family: Ogg, serif; }
+.home-page .hero-btn .icon-arrow { width: 1em; height: 1em; margin-left: .2em; display: inline-flex; transition: transform .3s; }
+.home-page .hero-btn .icon-arrow svg { width: 100%; height: 100%; }
+.home-page .hero-btn:hover .icon-arrow { transform: translateX(.4em); }
