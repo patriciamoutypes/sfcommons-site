@@ -35,6 +35,39 @@ Three JavaScript errors (`rotationTime` already declared, `onmouseover` on
 null, `tagName` on null) come from custom code on the pages and happen on
 the live Webflow site too. They don't break anything visible.
 
+## How to edit the site (for team members)
+
+This repo is connected to Netlify. Every commit to `main` goes live on
+thesfcommons.com within about a minute. There is no Webflow editor anymore.
+
+**Change some text**
+1. Find the page under `public/`. The home page is `public/index.html`;
+   every other page is `public/<page-name>/index.html` (for example
+   `public/about/index.html`).
+2. Open the file on github.com and click the pencil icon (Edit).
+3. Use your browser's find (Cmd-F) to locate the exact text, change it,
+   and click "Commit changes". Leave the commit message as is or describe
+   the change.
+4. Wait a minute, then reload thesfcommons.com.
+
+**Change an image**
+1. Upload the new image into `public/assets/` on github.com
+   (Add file → Upload files).
+2. Edit the page file and change the `src="/assets/old-name.jpg"` to the
+   new file name.
+
+**Anything bigger** (new section, new page, layout): paste the page file
+into Claude with a description of the change, review what it gives back,
+and commit it. Or ask Patricia.
+
+**Events** need none of this. They come from the Luma calendar
+automatically. Membership, day pass and careers links point at Airtable,
+Notion and the guests app, which are unchanged.
+
+**If something breaks**, open the repo's commit history on github.com,
+click the last good commit, and use "Revert". The site goes back within
+a minute.
+
 ## Preview locally
 
 From the `Vibe Coding` folder the `sfcommons-site` entry in
