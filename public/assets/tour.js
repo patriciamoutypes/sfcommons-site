@@ -85,6 +85,8 @@
     else if (mins < close) { label = 'Right now: meeting house'; pct = (mins - open) / (close - open) * 100; }
     else { label = 'Closed for the night, back at 9am'; pct = 100; }
     now.style.left = pct + '%';
+    now.classList.toggle('at-start', pct < 18);
+    now.classList.toggle('at-end', pct > 82);
     now.querySelector('b').textContent = label;
     now.hidden = false;
   }

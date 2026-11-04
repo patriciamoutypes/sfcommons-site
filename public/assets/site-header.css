@@ -937,3 +937,7 @@
 @media (prefers-reduced-motion: reduce) {
   .home-page .pill-columns .pill { opacity: 1; transform: none; animation: none; }
 }
+
+/* Keep the now-label inside the line near either end. */
+.home-page .day-now.at-start b { left: 0; transform: none; }
+.home-page .day-now.at-end b { left: auto; right: 0; transform: none; }
